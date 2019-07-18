@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiRootUrl: 'https://api.hel.fi/servicemap/v2/unit/',
+  listApiParams: '?service_node=2006&only=location,name,street_address&page=1&page_size=1000',
+  singleUnitApiParams: '?include=municipality'
 };
 
 /*
@@ -14,3 +17,9 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+// list units
+// https://api.hel.fi/servicemap/v2/unit/?service_node=2006&only=location,name,street_address&page=1&page_size=2
+
+// single unit
+// https://api.hel.fi/servicemap/v2/unit/59944/?include=municipality&geometry=true

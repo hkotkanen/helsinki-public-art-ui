@@ -1,0 +1,11 @@
+<div class="artwork-detail-container">
+  <div *ngIf="selectedArtwork; else noArtworkSelected" class="artwork-details">
+    <h1>{{ selectedArtwork.name }}</h1>
+    <img src="{{ selectedArtwork.pictureUrl }}" />
+    <p>{{ selectedArtwork.description }}</p>
+  </div>
+
+  <ng-template #noArtworkSelected>
+    No artwork selected!
+  </ng-template>
+</div>

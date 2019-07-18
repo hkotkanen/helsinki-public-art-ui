@@ -1,0 +1,11 @@
+.artworks-container {
+  display: flex;
+}
+
+.artworks-list-container {
+  width: 30vw;
+  height: calc(100vh - 16px);
+  overflow-y: scroll;
+  background-color: wheat;
+  flex: 0 1 auto;
+}

@@ -1,0 +1,12 @@
+.artwork-detail-container {
+  padding: 15px;
+  width: 70vw;
+  height: calc(100vh - 46px);
+  flex: 0 1 auto;
+  overflow-y: scroll;
+  background-color: gainsboro;
+
+  img {
+    max-width: 65vw;
+  }
+}
