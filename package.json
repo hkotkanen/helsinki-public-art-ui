@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prettier": "prettier \"src/app/**\" \"e2e/src/**\" --write"
+    "prettier": "prettier \"src/app/**\" \"e2e/src/**\" --write",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
