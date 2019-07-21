@@ -51,20 +51,21 @@ export class NavOverlaysComponent implements OnInit {
 
   onArtworkListClick(id: number) {
     this.artworksService.getArtWorkSingle(id).subscribe(data => {
-      this.selectedArtwork = data;
-      this.map.centerArtwork(data);
-      this.listDrawer.close();
-      this.detailsDrawer.open();
+      this.selectArtwork(data);
     });
   }
 
   onMarkerClick(id: number) {
     this.artworksService.getArtWorkSingle(id).subscribe(data => {
-      this.selectedArtwork = data;
-      this.map.centerArtwork(data);
+      this.selectArtwork(data);
+    });
+  }
+
+  selectArtwork(aw: PublicArtWorkFull) {
+      this.selectedArtwork = aw;
+      this.map.centerArtwork(aw);
       this.listDrawer.close();
       this.detailsDrawer.open();
-    });
   }
 
 }
