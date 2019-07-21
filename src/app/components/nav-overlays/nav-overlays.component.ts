@@ -12,9 +12,9 @@ import { MapComponent } from '@components/map/map.component';
   styleUrls: ['./nav-overlays.component.scss']
 })
 export class NavOverlaysComponent implements OnInit {
-  private selectedArtwork: PublicArtWorkFull;
-  private artworks: PublicArtWorkConcise[];
-  public loading = true;
+  selectedArtwork: PublicArtWorkFull;
+  artworks: PublicArtWorkConcise[];
+  loading = true;
 
   @ViewChild('artworkList', { static: true })
   listDrawer: MatSidenav;
