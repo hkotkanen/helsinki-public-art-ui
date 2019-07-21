@@ -1,11 +1,13 @@
-<div class="artwork-detail-container">
-  <div *ngIf="selectedArtwork; else noArtworkSelected" class="artwork-details">
-    <h1>{{ selectedArtwork.name }}</h1>
-    <img src="{{ selectedArtwork.pictureUrl }}" />
-    <p>{{ selectedArtwork.description }}</p>
+<div *ngIf="selectedArtwork; else noArtworkSelected" class="artwork-details">
+  <h1>{{ selectedArtwork.name }}</h1>
+  <div *ngIf="selectedArtwork.streetAddress" class="location-details">
+    <mat-icon>location_on</mat-icon>
+    {{ selectedArtwork.streetAddress }}, {{ selectedArtwork.municipality }}
   </div>
-
-  <ng-template #noArtworkSelected>
-    No artwork selected!
-  </ng-template>
+  <img src="{{ selectedArtwork.pictureUrl }}" />
+  <p *ngIf="selectedArtwork.description">{{ selectedArtwork.description }}</p>
 </div>
+
+<ng-template #noArtworkSelected>
+  <p class="artwork-details">Valitse taideteos nähdäksesi lisätietoja!</p>
+</ng-template>

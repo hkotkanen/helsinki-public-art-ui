@@ -1,0 +1,29 @@
+.toolbar-mid-space {
+  flex: 1 1 auto;
+}
+
+.list-drawer {
+  width:40vw;
+  @media (max-width: 599px) {
+    width: 100vw;
+    z-index: calc(666 + 1);
+  }
+}
+.details-drawer {
+  width: 40vw;
+  @media (max-width: 599px) {
+    width: 100vw;
+    z-index: calc(666 + 2);
+  }
+}
+
+.open-list-button {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+.open-details-button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}

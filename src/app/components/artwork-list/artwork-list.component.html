@@ -1,14 +1,10 @@
-<div class="artworks-container">
-  <div class="artworks-list-container">
-    <mat-nav-list>
-      <mat-progress-bar *ngIf="loading" mode="query"></mat-progress-bar>
-      <div *ngIf="!loading">
-        <a mat-list-item *ngFor="let aw of artworks" (click)="showDetails(aw)">
-          <p>{{ aw.name }} <small>{{ aw.location }}</small></p>
-        </a>
-      </div>
-    </mat-nav-list>
+<mat-nav-list>
+  <mat-progress-bar *ngIf="loading" mode="query"></mat-progress-bar>
+  <div *ngIf="!loading">
+    <a mat-list-item *ngFor="let aw of artworks" (click)="artworkListClick.emit(aw.id)">
+      <h2 mat-line>{{ aw.name }}</h2>
+      <p mat-line class="list-item-address-row">{{ aw.streetAddress }}</p>
+      <mat-divider></mat-divider>
+    </a>
   </div>
-  <app-artwork-detail [selectedArtwork]="selectedArtwork"></app-artwork-detail>
-</div>
-
+</mat-nav-list>

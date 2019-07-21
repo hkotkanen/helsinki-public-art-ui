@@ -1,0 +1,16 @@
+.map-container {
+  position: absolute;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+
+  agm-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+mat-progress-spinner {
+  z-index: 666;
+}

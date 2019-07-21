@@ -1,0 +1,73 @@
+<app-map [artworks]="artworks" [loading]="loading" (markerClick)="onMarkerClick($event)"></app-map>
+
+<mat-sidenav-container class="sidenav-drawer-container">
+  <!--drawer for list on the left hand side-->
+  <mat-sidenav #artworkList
+    class="list-drawer"
+    fixedInViewport="true"
+    role="dialog"
+    mode="over"
+    opened="true"
+    [autoFocus]="false"
+  >
+    <mat-toolbar class="list-menu-header" color="accent">
+      <span>Julkiset taideteokset</span>
+      <span class="toolbar-mid-space"></span>
+      <button
+        mat-icon-button
+        title="Close list"
+        (click)="listDrawer.close()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <app-artwork-list
+      [loading]="loading"
+      [artworks]="artworks"
+      (artworkListClick)="onArtworkListClick($event)"
+    ></app-artwork-list>
+  </mat-sidenav>
+
+  <!--drawer for details on right hand side-->
+  <mat-sidenav #artworkDetails
+    class="details-drawer"
+    fixedInViewport="true"
+    role="dialog"
+    mode="over"
+    position="end"
+    [autoFocus]="false"
+  >
+    <mat-toolbar class="details-menu-header" color="primary">
+      <span>Lisätiedot</span>
+      <span class="toolbar-mid-space"></span>
+      <button
+        mat-icon-button
+        title="Piilota lisätiedot"
+        (click)="detailsDrawer.close()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-divider></mat-divider>
+    <app-artwork-detail [selectedArtwork]="selectedArtwork"></app-artwork-detail>
+  </mat-sidenav>
+</mat-sidenav-container>
+
+<button
+  mat-fab
+  class="open-list-button"
+  title="Avaa listaus"
+  (click)="openListDrawer()"
+>
+  <mat-icon>view_list</mat-icon>
+</button>
+
+<button
+  mat-fab
+  class="open-details-button"
+  title="Avaa tiedot"
+  (click)="openDetailsDrawer()"
+>
+  <mat-icon>info</mat-icon>
+</button>
