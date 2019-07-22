@@ -11,7 +11,7 @@ import { environment } from '@envs/environment';
 })
 export class ArtworkService {
   private apiRootUrl = `${environment.apiRootUrl}`;
-  private artworkList: PublicArtWorkConcise[] = null;
+  // private artworkList: PublicArtWorkConcise[] = null;
 
   constructor(private http: HttpClient) {}
 

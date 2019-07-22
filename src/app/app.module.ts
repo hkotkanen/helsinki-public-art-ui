@@ -11,13 +11,14 @@ import { MatProgressSpinnerModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 
+import { DataMarker } from 'src/app/utils/DataMarker';
 import { AppComponent } from '@app/app.component';
 import { ArtworkListComponent } from '@components/artwork-list/artwork-list.component';
-import { ArtworkDetailComponent } from './components/artwork-detail/artwork-detail.component';
-import { NavOverlaysComponent } from './components/nav-overlays/nav-overlays.component';
+import { ArtworkDetailComponent } from '@components/artwork-detail/artwork-detail.component';
+import { NavOverlaysComponent } from '@components/nav-overlays/nav-overlays.component';;
+import { MapComponent } from '@components/map/map.component';
 
-import { AgmCoreModule } from '@agm/core';
-import { MapComponent } from './components/map/map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [AppComponent, ArtworkListComponent, ArtworkDetailComponent, NavOverlaysComponent, MapComponent],
@@ -33,11 +34,7 @@ import { MapComponent } from './components/map/map.component';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatToolbarModule,
-    AgmCoreModule.forRoot({
-      // please get your own API key here:
-      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
-      apiKey: 'AIzaSyApFnjX-EdroJbRup_6cnhXDFUn39Rcswo'
-    })
+    LeafletModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

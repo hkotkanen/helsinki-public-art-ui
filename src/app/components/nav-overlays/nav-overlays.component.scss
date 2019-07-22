@@ -1,3 +1,7 @@
+.sidenav-drawer-container {
+  z-index: 1002; // leaflet tries to flex with z-index 1000?
+}
+
 .toolbar-mid-space {
   flex: 1 1 auto;
 }
@@ -18,14 +22,22 @@
 }
 
 .open-list-button {
+  z-index: 1001;
   position: absolute;
-  top: 30px;
-  left: 30px;
+  bottom: 40px;
+  left: 40px;
 }
 .open-details-button {
+  z-index: 1001;
   position: absolute;
-  top: 30px;
-  right: 30px;
+  bottom: 40px;
+  right: 40px;
+}
+.locate-me-button {
+  z-index: 1001;
+  position: absolute;
+  bottom: 40px;
+  right: 120px;
 }
 
 .list-menu-header,
@@ -33,5 +45,5 @@
     position: sticky;
     position: -webkit-sticky; /* For macOS/iOS Safari */
     top: 0; /* Sets the sticky toolbar to be on top */
-    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+    z-index: calc(666 + 3); /* Ensure that your app's content doesn't overlap the toolbar */
 }

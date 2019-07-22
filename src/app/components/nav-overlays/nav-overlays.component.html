@@ -1,4 +1,4 @@
-<app-map [artworks]="artworks" [loading]="loading" (markerClick)="onMarkerClick($event)"></app-map>
+<app-map [artworks]="artworks" (markerClick)="onMarkerClick($event)" (userLocationReceived)="sortByDistance($event)"></app-map>
 
 <mat-sidenav-container class="sidenav-drawer-container">
   <!--drawer for list on the left hand side-->
@@ -13,6 +13,13 @@
     <mat-toolbar class="list-menu-header" color="accent">
       <span>Julkiset taideteokset</span>
       <span class="toolbar-mid-space"></span>
+      <button
+        mat-icon-button
+        title="Sort list"
+        (click)="map.locateUser()"
+      >
+        <mat-icon>sort</mat-icon>
+      </button>
       <button
         mat-icon-button
         title="Close list"
@@ -70,4 +77,13 @@
   (click)="openDetailsDrawer()"
 >
   <mat-icon>info</mat-icon>
+</button>
+
+<button
+  mat-fab
+  class="locate-me-button"
+  title="Sijaintini"
+  (click)="map.locateUser()"
+>
+  <mat-icon>my_location</mat-icon>
 </button>

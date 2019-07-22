@@ -22,8 +22,7 @@
     "paths": {
       "@components/*": ["src/app/components/*"],
       "@services/*": ["src/app/services/*"],
-      "@models/*": ["src/app/models/*"],
-      "@map/*": ["src/app/map/*"],
+      "@utils/*": ["src/app/utils/*"],
       "@data/*": ["src/app/data/*"],
       "@mocks/*": ["src/app/mocks/*"],
       "@app/*": ["src/app/*"],

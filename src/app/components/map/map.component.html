@@ -1,11 +1,8 @@
-<mat-progress-spinner *ngIf="loading"></mat-progress-spinner>
 <div class="map-container">
-  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-    <agm-marker
-      *ngFor="let aw of artworks"
-      [latitude]="aw.location[1]"
-      [longitude]="aw.location[0]"
-      (markerClick)="markerClick.emit(aw.id)"
-    ></agm-marker>
-  </agm-map>
+  <div
+    id="map"
+    leaflet
+    [leafletOptions]="options"
+    (leafletMapReady)="onMapReady($event)"
+  ></div>
 </div>

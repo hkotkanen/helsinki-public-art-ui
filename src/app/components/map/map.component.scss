@@ -1,14 +1,14 @@
 .map-container {
+  z-index: 499; // shove to bottom
   position: absolute;
-  width: calc(100% - 16px);
-  height: calc(100% - 16px);
+  width: 100%;
+  height: 100%;
 
-  agm-map {
+  #map {
     position: relative;
     width: 100%;
     height: 100%;
   }
-
 }
 
 mat-progress-spinner {

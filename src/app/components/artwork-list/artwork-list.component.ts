@@ -1,5 +1,5 @@
 import { Component, Input, Output, OnInit, ViewChild, EventEmitter } from '@angular/core';
-import { PublicArtWorkConcise, PublicArtWorkFull } from '@app/interfaces';
+import { PublicArtWorkConcise } from '@app/interfaces';
 
 import { ArtworkDetailComponent } from '@components/artwork-detail/artwork-detail.component';
 
