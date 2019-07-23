@@ -1,6 +1,9 @@
 .sidenav-drawer-container {
   z-index: 1002; // leaflet tries to flex with z-index 1000?
 }
+.mat-drawer-container {
+  overflow: visible;
+}
 
 .toolbar-mid-space {
   flex: 1 1 auto;
