@@ -79,6 +79,7 @@ export class MapComponent implements OnInit {
   locateUser() {
     this.map.locate({setView: true});
     this.map.on('locationfound', (event) => this.onLocationFound(event));
+    this.map.on('locationerror', (event) => this.onLocationError(event));
   }
 
   onLocationFound(e) {
@@ -89,4 +90,7 @@ export class MapComponent implements OnInit {
     this.userLocationReceived.emit(e.latlng);
   }
 
+  onLocationError(e) {
+    alert('Getting location errored');
+  }
 }
