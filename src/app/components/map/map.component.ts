@@ -76,9 +76,6 @@ export class MapComponent implements OnInit {
   }
 
   locateUser() {
-    // this.map.locate({setView: true});
-    // this.map.on('locationfound', (event) => this.onLocationFound(event));
-    // this.map.on('locationerror', (event) => this.onLocationError(event));
     navigator.geolocation.getCurrentPosition(
     response => this.onLocationFound(response.coords),
     error => this.onLocationError(error),
@@ -96,7 +93,6 @@ export class MapComponent implements OnInit {
   }
 
   onLocationError(e) {
-    console.log(e);
     alert(`Failed getting location: ${e.message}`);
   }
 }

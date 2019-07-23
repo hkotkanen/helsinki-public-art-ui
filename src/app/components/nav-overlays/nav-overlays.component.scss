@@ -24,20 +24,20 @@
 .open-list-button {
   z-index: 1001;
   position: absolute;
-  bottom: 40px;
-  left: 40px;
+  bottom: 25px;
+  left: calc(50% - 70px);
 }
 .open-details-button {
   z-index: 1001;
   position: absolute;
-  bottom: 40px;
-  right: 40px;
+  bottom: 25px;
+  left: calc(50% + 30px);
 }
 .locate-me-button {
   z-index: 1001;
   position: absolute;
-  bottom: 40px;
-  right: 120px;
+  bottom: 25px;
+  left: calc(50% - 20px);
 }
 
 .list-menu-header,

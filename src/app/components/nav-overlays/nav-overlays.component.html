@@ -7,7 +7,6 @@
     fixedInViewport="true"
     role="dialog"
     mode="over"
-    opened="true"
     [autoFocus]="false"
   >
     <mat-toolbar class="list-menu-header" color="accent">
@@ -62,7 +61,7 @@
 </mat-sidenav-container>
 
 <button
-  mat-fab
+  mat-mini-fab
   class="open-list-button"
   title="Avaa listaus"
   (click)="openListDrawer()"
@@ -71,16 +70,16 @@
 </button>
 
 <button
-  mat-fab
+  mat-mini-fab
   class="open-details-button"
   title="Avaa tiedot"
   (click)="openDetailsDrawer()"
 >
-  <mat-icon>info</mat-icon>
+  <mat-icon>pageview</mat-icon>
 </button>
 
 <button
-  mat-fab
+  mat-mini-fab
   class="locate-me-button"
   title="Sijaintini"
   (click)="map.locateUser()"
