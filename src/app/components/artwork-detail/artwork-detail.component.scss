@@ -1,3 +1,4 @@
+@import '../../../theme.scss';
 
 .artwork-details {
   padding: 0 15px 0 15px;
@@ -19,5 +20,11 @@
       position: relative;
       top: 6px;
     }
+  }
+
+  .image-details-caption {
+    font-size: smaller;
+    font-style: italic;
+    padding-top: 5px;
   }
 }

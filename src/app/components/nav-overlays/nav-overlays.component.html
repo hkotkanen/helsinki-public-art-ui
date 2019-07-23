@@ -62,18 +62,18 @@
 
 <button
   mat-mini-fab
-  class="open-list-button"
+  class="toggle-list-button"
   title="Avaa listaus"
-  (click)="openListDrawer()"
+  (click)="toggleListDrawer()"
 >
   <mat-icon>view_list</mat-icon>
 </button>
 
 <button
   mat-mini-fab
-  class="open-details-button"
+  class="toggle-details-button"
   title="Avaa tiedot"
-  (click)="openDetailsDrawer()"
+  (click)="toggleDetailsDrawer()"
 >
   <mat-icon>pageview</mat-icon>
 </button>
@@ -86,3 +86,14 @@
 >
   <mat-icon>my_location</mat-icon>
 </button>
+
+<button
+  mat-mini-fab
+  class="open-info-button"
+  title="Info"
+  (click)="openInfoDialog()"
+>
+  <mat-icon>info</mat-icon>
+</button>
+
+

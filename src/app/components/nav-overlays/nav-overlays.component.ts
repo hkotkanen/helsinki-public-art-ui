@@ -1,10 +1,11 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ArtworkListComponent } from '@components/artwork-list/artwork-list.component';
 import { ArtworkDetailComponent } from '@components/artwork-detail/artwork-detail.component';
-import { MatSidenav } from '@angular/material';
+import { MatDialog, MatSidenav } from '@angular/material';
 import { PublicArtWorkConcise, PublicArtWorkFull } from '@app/interfaces';
 import { ArtworkService } from '@services/artwork.service';
 import { MapComponent } from '@components/map/map.component';
+import { InfoDialogComponent } from '@components/info-dialog/info-dialog.component';
 
 import { LatLng } from 'leaflet';
 
@@ -36,7 +37,11 @@ export class NavOverlaysComponent implements OnInit {
   @Input()
   userLocation: [number, number];
 
-  constructor(private artworksService: ArtworkService, private changeDetector: ChangeDetectorRef) {}
+  constructor(
+    private artworksService: ArtworkService,
+    private changeDetector: ChangeDetectorRef,
+    private infoDialog: MatDialog
+    ) {}
 
   ngOnInit() {
     this.artworksService.getArtWorkList().subscribe(data => {
@@ -45,12 +50,12 @@ export class NavOverlaysComponent implements OnInit {
     });
   }
 
-  openListDrawer() {
-    this.listDrawer.open();
+  toggleListDrawer() {
+    this.listDrawer.toggle();
   }
 
-  openDetailsDrawer() {
-    this.detailsDrawer.open();
+  toggleDetailsDrawer() {
+    this.detailsDrawer.toggle();
   }
 
   onArtworkListClick(id: number) {
@@ -82,6 +87,12 @@ export class NavOverlaysComponent implements OnInit {
       } else {
         return distFirst > distSecond ? 1 : 0;
       }
+    });
+  }
+
+  openInfoDialog() {
+    this.infoDialog.open(InfoDialogComponent, {
+      width: '95%'
     });
   }
 
