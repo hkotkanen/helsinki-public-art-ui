@@ -2,9 +2,10 @@
 //
 //@include mat-core();
 
-$primary: #00d7a7;
-$accent:  #0000bf;
-$warn:    #f5a3c7;
+// from https://www.hel.fi/static/hkr/ohjeita_suunnittelijoille/HKI_GRAAFINEN_Ohjeisto_21_ilme.pdf
+$primary: rgb(0, 215, 167);
+$accent:  rgb(255, 212, 0);
+$warn:    rgb(245, 164, 199);
 
 //$theme: mat-light-theme($primary, $accent, $warn);
 //

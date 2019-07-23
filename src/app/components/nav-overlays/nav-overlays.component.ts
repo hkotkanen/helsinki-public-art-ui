@@ -35,7 +35,8 @@ export class NavOverlaysComponent implements OnInit {
   map: MapComponent;
 
   @Input()
-  userLocation: [number, number];
+  userLocation: LatLng;
+  private sortList = false;
 
   constructor(
     private artworksService: ArtworkService,
@@ -47,15 +48,12 @@ export class NavOverlaysComponent implements OnInit {
     this.artworksService.getArtWorkList().subscribe(data => {
       this.loading = false;
       this.artworks = data;
+      this.sortAlphabetical();
     });
   }
 
   toggleListDrawer() {
     this.listDrawer.toggle();
-  }
-
-  toggleDetailsDrawer() {
-    this.detailsDrawer.toggle();
   }
 
   onArtworkListClick(id: number) {
@@ -78,15 +76,28 @@ export class NavOverlaysComponent implements OnInit {
     this.changeDetector.detectChanges();
   }
 
+  getLocation(sortList: boolean) {
+    this.map.locateUser();
+    this.sortList = sortList;
+  }
+
   sortByDistance(location: LatLng) {
+    if (!this.sortList) { return; }
     this.artworks.sort((first, second) => {
       const distFirst = location.distanceTo({lat: first.location[1], lng: first.location[0]});
       const distSecond = location.distanceTo({lat: second.location[1], lng: second.location[0]});
       if (distFirst === distSecond) {
         return 0;
       } else {
-        return distFirst > distSecond ? 1 : 0;
+        return distFirst > distSecond ? 1 : -1;
       }
+    });
+    this.sortList = false;
+  }
+
+  sortAlphabetical() {
+    this.artworks.sort((first: PublicArtWorkConcise, second: PublicArtWorkConcise) => {
+      return first.name > second.name ? 1 : -1;
     });
   }
 

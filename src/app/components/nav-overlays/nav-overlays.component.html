@@ -1,4 +1,8 @@
-<app-map [artworks]="artworks" (markerClick)="onMarkerClick($event)" (userLocationReceived)="sortByDistance($event)"></app-map>
+<app-map
+  [artworks]="artworks"
+  (markerClick)="onMarkerClick($event)"
+  (userLocationReceived)="sortByDistance($event)"
+></app-map>
 
 <mat-sidenav-container class="sidenav-drawer-container">
   <!--drawer for list on the left hand side-->
@@ -14,8 +18,15 @@
       <span class="toolbar-mid-space"></span>
       <button
         mat-icon-button
-        title="Järjestä etäisyyden mukaan"
-        (click)="map.locateUser()"
+        title="Aakkosjärjestys"
+        (click)="sortAlphabetical()"
+      >
+        <mat-icon>sort_by_alpha</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        title="Lähimmät ensin"
+        (click)="getLocation(true)"
       >
         <mat-icon>near_me</mat-icon>
       </button>
@@ -61,7 +72,7 @@
 </mat-sidenav-container>
 
 <button
-  mat-mini-fab
+  mat-fab
   class="toggle-list-button"
   title="Avaa listaus"
   (click)="toggleListDrawer()"
@@ -70,25 +81,16 @@
 </button>
 
 <button
-  mat-mini-fab
-  class="toggle-details-button"
-  title="Avaa tiedot"
-  (click)="toggleDetailsDrawer()"
->
-  <mat-icon>pageview</mat-icon>
-</button>
-
-<button
-  mat-mini-fab
+  mat-fab
   class="locate-me-button"
   title="Sijaintini"
-  (click)="map.locateUser()"
+  (click)="getLocation(false)"
 >
   <mat-icon>my_location</mat-icon>
 </button>
 
 <button
-  mat-mini-fab
+  mat-fab
   class="open-info-button"
   title="Info"
   (click)="openInfoDialog()"

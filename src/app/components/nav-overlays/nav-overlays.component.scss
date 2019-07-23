@@ -29,30 +29,22 @@
 .toggle-list-button {
   z-index: 1001;
   position: absolute;
-  bottom: 25px;
-  left: calc(50% - 55px);
-  background-color: $primary;
-}
-.toggle-details-button {
-  z-index: 1001;
-  position: absolute;
-  bottom: 25px;
-  left: calc(50% + 35px);
-  background-color: $primary;
+  bottom: 90px;
+  right: 20px;
+  background-color: $accent;
 }
 .locate-me-button {
   z-index: 1001;
   position: absolute;
   bottom: 25px;
-  left: calc(50% - 10px);
-  background-color: $primary;
-  color: $accent;
+  right: 20px;
+  background-color: $accent;
 }
 .open-info-button {
   z-index: 1001;
   position: absolute;
   bottom: 25px;
-  right: 10px;
+  left: 20px;
   background-color: $warn;
 }
 
@@ -65,7 +57,7 @@
   color: white;
 }
 .list-menu-header {
-  background-color: $accent;
+  background-color: $primary;
 }
 .details-menu-header {
   background-color: $primary;

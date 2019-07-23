@@ -26,6 +26,7 @@ export class MapComponent implements OnInit {
   };
 
   private markers: DataMarker[] = [];
+  private userLocationMarker: UserLocationCircle;
   private map: Map;
 
   @Output()
@@ -86,8 +87,10 @@ export class MapComponent implements OnInit {
   onLocationFound(coords) {
     const pos: LatLng = new LatLng(coords.latitude, coords.longitude);
     const radius = coords.accuracy / 2;
-    new UserLocationCircle(pos, {radius: radius}).addTo(this.map);
-    new UserLocationCircle(pos, {radius: 1}).addTo(this.map);
+    if (!this.userLocationMarker) {
+      this.userLocationMarker = new UserLocationCircle(pos, {radius: radius}).addTo(this.map);
+      new UserLocationCircle(pos, {radius: 1}).addTo(this.map);
+    }
     this.map.panTo(pos);
     this.userLocationReceived.emit(pos);
   }
