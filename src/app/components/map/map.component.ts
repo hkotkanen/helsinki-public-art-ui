@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { PublicArtWorkConcise, PublicArtWorkFull } from '@app/interfaces';
-import { latLng, tileLayer, Map, icon } from 'leaflet';
+import { LatLng, latLng, tileLayer, Map, icon } from 'leaflet';
 
 import { DataMarker } from 'src/app/utils/DataMarker';
 import { UserLocationCircle } from 'src/app/utils/UserLocationCircle';
@@ -29,7 +29,7 @@ export class MapComponent implements OnInit {
   private map: Map;
 
   @Output()
-  userLocationReceived = new EventEmitter<[number, number]>();
+  userLocationReceived = new EventEmitter<LatLng>();
 
   @Output()
   markerClick = new EventEmitter<number>();
@@ -72,25 +72,31 @@ export class MapComponent implements OnInit {
   }
 
   markerClicked(e) {
-    console.log(e.target.data.id);
     this.markerClick.emit(e.target.data.id);
   }
 
   locateUser() {
-    this.map.locate({setView: true});
-    this.map.on('locationfound', (event) => this.onLocationFound(event));
-    this.map.on('locationerror', (event) => this.onLocationError(event));
+    // this.map.locate({setView: true});
+    // this.map.on('locationfound', (event) => this.onLocationFound(event));
+    // this.map.on('locationerror', (event) => this.onLocationError(event));
+    navigator.geolocation.getCurrentPosition(
+    response => this.onLocationFound(response.coords),
+    error => this.onLocationError(error),
+    {timeout: 1000 * 60, enableHighAccuracy: true, maximumAge: 1000 * 60 * 60}
+    );
   }
 
-  onLocationFound(e) {
-    const radius = e.accuracy / 2;
-    // L.marker(e.latlng).addTo(this.map).bindPopup("You are within " + radius + " meters from this point").openPopup();
-    new UserLocationCircle(e.latlng, {radius: radius}).addTo(this.map);
-    new UserLocationCircle(e.latlng, {radius: 1}).addTo(this.map);
-    this.userLocationReceived.emit(e.latlng);
+  onLocationFound(coords) {
+    const pos: LatLng = new LatLng(coords.latitude, coords.longitude);
+    const radius = coords.accuracy / 2;
+    new UserLocationCircle(pos, {radius: radius}).addTo(this.map);
+    new UserLocationCircle(pos, {radius: 1}).addTo(this.map);
+    this.map.panTo(pos);
+    this.userLocationReceived.emit(pos);
   }
 
   onLocationError(e) {
-    alert('Getting location errored');
+    console.log(e);
+    alert(`Failed getting location: ${e.message}`);
   }
 }

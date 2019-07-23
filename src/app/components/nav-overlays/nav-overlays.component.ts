@@ -54,21 +54,18 @@ export class NavOverlaysComponent implements OnInit {
   }
 
   onArtworkListClick(id: number) {
-    console.log('list clicked, selecting');
     this.artworksService.getArtWorkSingle(id).subscribe(data => {
       this.selectArtwork(data);
     });
   }
 
   onMarkerClick(id: number) {
-    console.log('marker clicked, selecting');
     this.artworksService.getArtWorkSingle(id).subscribe(data => {
       this.selectArtwork(data);
     });
   }
 
   selectArtwork(aw: PublicArtWorkFull) {
-    console.log('now selecting');
     this.selectedArtwork = aw;
     this.map.centerArtwork(aw);
     this.listDrawer.toggle(false);
@@ -77,7 +74,6 @@ export class NavOverlaysComponent implements OnInit {
   }
 
   sortByDistance(location: LatLng) {
-    console.log(`got location ${location}`);
     this.artworks.sort((first, second) => {
       const distFirst = location.distanceTo({lat: first.location[1], lng: first.location[0]});
       const distSecond = location.distanceTo({lat: second.location[1], lng: second.location[0]});
