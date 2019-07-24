@@ -5,6 +5,10 @@ import { LatLng, latLng, tileLayer, Map, icon } from 'leaflet';
 import { DataMarker } from 'src/app/utils/DataMarker';
 import { UserLocationCircle } from 'src/app/utils/UserLocationCircle';
 
+interface Dictionary<T> {
+  [Key: number]: T;
+}
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -25,7 +29,7 @@ export class MapComponent implements OnInit {
     center: latLng(60.1631, 24.9414)
   };
 
-  private markers: DataMarker[] = [];
+  private markers: Dictionary<DataMarker> = {};
   private userLocationMarker: UserLocationCircle;
   private map: Map;
 
@@ -45,7 +49,7 @@ export class MapComponent implements OnInit {
       icon: icon({
         iconSize: [ 25, 41 ],
         iconAnchor: [ 13, 41 ],
-        iconUrl: 'assets/marker-icon.png',
+        iconUrl: 'assets/marker-icon-2x.png',
         shadowUrl: 'assets/marker-shadow.png'
       })
     };
@@ -54,7 +58,7 @@ export class MapComponent implements OnInit {
       const markerTemporary = new DataMarker({lat: artwork.location[1], lng: artwork.location[0]}, artwork, markerOpts);
       markerTemporary.on('click', (event) => this.markerClicked(event));
       markerTemporary.addTo(this.map);
-      this.markers.push(markerTemporary);
+      this.markers[artwork.id] = markerTemporary;
     });
   }
 
@@ -66,10 +70,11 @@ export class MapComponent implements OnInit {
     this.map = map;
   }
 
-  centerArtwork(aw: PublicArtWorkFull) {
+  selectArtwork(aw: PublicArtWorkFull) {
     if (aw.location !== null) {
       this.map.panTo({lat: aw.location[1], lng: aw.location[0]});
     }
+    console.log(this.markers[aw.id]);
   }
 
   markerClicked(e) {

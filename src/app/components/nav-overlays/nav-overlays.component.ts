@@ -39,13 +39,13 @@ export class NavOverlaysComponent implements OnInit {
   private sortList = false;
 
   constructor(
-    private artworksService: ArtworkService,
+    private artworkService: ArtworkService,
     private changeDetector: ChangeDetectorRef,
     private infoDialog: MatDialog
     ) {}
 
   ngOnInit() {
-    this.artworksService.getArtWorkList().subscribe(data => {
+    this.artworkService.getArtworkList().subscribe(data => {
       this.loading = false;
       this.artworks = data;
       this.sortAlphabetical();
@@ -57,20 +57,20 @@ export class NavOverlaysComponent implements OnInit {
   }
 
   onArtworkListClick(id: number) {
-    this.artworksService.getArtWorkSingle(id).subscribe(data => {
+    this.artworkService.getArtworkSingle(id).subscribe(data => {
       this.selectArtwork(data);
     });
   }
 
   onMarkerClick(id: number) {
-    this.artworksService.getArtWorkSingle(id).subscribe(data => {
+    this.artworkService.getArtworkSingle(id).subscribe(data => {
       this.selectArtwork(data);
     });
   }
 
   selectArtwork(aw: PublicArtWorkFull) {
     this.selectedArtwork = aw;
-    this.map.centerArtwork(aw);
+    this.map.selectArtwork(aw);
     this.listDrawer.toggle(false);
     this.detailsDrawer.toggle(true);
     this.changeDetector.detectChanges();

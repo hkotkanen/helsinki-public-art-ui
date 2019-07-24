@@ -15,7 +15,7 @@ export class ArtworkService {
 
   constructor(private http: HttpClient) {}
 
-  getArtWorkList(): Observable<PublicArtWorkConcise[]> {
+  getArtworkList(): Observable<PublicArtWorkConcise[]> {
     return this.http.get<ApiResponse>(`${this.apiRootUrl}${environment.listApiParams}`).pipe(
       map(response => {
         return response.results.map(artwork => {
@@ -32,7 +32,7 @@ export class ArtworkService {
     );
   }
 
-  getArtWorkSingle(id: number): Observable<PublicArtWorkFull> {
+  getArtworkSingle(id: number): Observable<PublicArtWorkFull> {
     return this.http.get(`${this.apiRootUrl}/${id}/${environment.singleUnitApiParams}`).pipe(
       map(response => {
         return {
@@ -40,9 +40,9 @@ export class ArtworkService {
           name: response['name']['fi'],
           streetAddress: response['street_address'] ? response['street_address']['fi'] : null,
           location: response['location'] ? response['location']['coordinates'] : null,
-          pictureUrl: response['picture_url'],
-          pictureEntranceUrl: response['picture_entrance_url'],
-          streetViewEntranceUrl: response['streetview_entrance_url'],
+          pictureUrl: response['picture_url'] ? response['picture_url'] : null,
+          pictureEntranceUrl: response['picture_entrance_url'] ? response['picture_entrance_url'] : null,
+          streetViewEntranceUrl: response['streetview_entrance_url'] ? response['streetview_entrance_url'] : null,
           description: response['description'] ? response['description']['fi'] : null,
           shortDescription: null,
           pictureCaption: response['picture_caption'] ? response['picture_caption']['fi'] : null,

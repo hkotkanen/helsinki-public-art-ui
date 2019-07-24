@@ -41,7 +41,7 @@ export interface PublicArtWorkConcise {
 export interface PublicArtWorkFull {
   id: number;
   name: string;
-  municipality: Municipality;
+  municipality: string;
   description: string;
 
   location?: [number, number];
