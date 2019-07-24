@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { PublicArtWorkConcise, PublicArtWorkFull } from '@app/interfaces';
-import { LatLng, latLng, tileLayer, Map, icon } from 'leaflet';
+import { LatLng, latLng, tileLayer, Map, icon, Popup, Point } from 'leaflet';
 
 import { DataMarker } from 'src/app/utils/DataMarker';
 import { UserLocationCircle } from 'src/app/utils/UserLocationCircle';
@@ -56,8 +56,12 @@ export class MapComponent implements OnInit {
 
     artworkList.forEach(artwork => {
       const markerTemporary = new DataMarker({lat: artwork.location[1], lng: artwork.location[0]}, artwork, markerOpts);
-      markerTemporary.on('click', (event) => this.markerClicked(event));
-      markerTemporary.addTo(this.map);
+      const popupTemporary: Popup = new Popup({offset: new Point(0, -34)});
+      popupTemporary.setContent(artwork.name);
+      markerTemporary
+        .on('click', (event) => this.markerClicked(event))
+        .addTo(this.map)
+        .bindPopup(popupTemporary);
       this.markers[artwork.id] = markerTemporary;
     });
   }
@@ -71,10 +75,10 @@ export class MapComponent implements OnInit {
   }
 
   selectArtwork(aw: PublicArtWorkFull) {
-    if (aw.location !== null) {
-      this.map.panTo({lat: aw.location[1], lng: aw.location[0]});
+    this.map.flyTo({lat: aw.location[1], lng: aw.location[0]});
+    if ((this.markers[aw.id] !== null) && !this.markers[aw.id].isPopupOpen()) {
+      this.markers[aw.id].openPopup();
     }
-    console.log(this.markers[aw.id]);
   }
 
   markerClicked(e) {

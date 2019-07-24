@@ -56,13 +56,7 @@ export class NavOverlaysComponent implements OnInit {
     this.listDrawer.toggle();
   }
 
-  onArtworkListClick(id: number) {
-    this.artworkService.getArtworkSingle(id).subscribe(data => {
-      this.selectArtwork(data);
-    });
-  }
-
-  onMarkerClick(id: number) {
+  onArtworkSelect(id: number) {
     this.artworkService.getArtworkSingle(id).subscribe(data => {
       this.selectArtwork(data);
     });

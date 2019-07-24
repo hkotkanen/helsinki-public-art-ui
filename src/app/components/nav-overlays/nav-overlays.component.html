@@ -1,6 +1,6 @@
 <app-map
   [artworks]="artworks"
-  (markerClick)="onMarkerClick($event)"
+  (markerClick)="onArtworkSelect($event)"
   (userLocationReceived)="sortByDistance($event)"
 ></app-map>
 
@@ -42,7 +42,7 @@
     <app-artwork-list
       [loading]="loading"
       [artworks]="artworks"
-      (artworkListClick)="onArtworkListClick($event)"
+      (artworkListClick)="onArtworkSelect($event)"
     ></app-artwork-list>
   </mat-sidenav>
 
