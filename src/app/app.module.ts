@@ -20,6 +20,8 @@ import { MapComponent } from '@components/map/map.component';
 import { InfoDialogComponent } from '@components/info-dialog/info-dialog.component';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatToolbarModule,
-    LeafletModule.forRoot()
+    LeafletModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],
