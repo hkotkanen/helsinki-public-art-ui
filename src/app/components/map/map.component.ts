@@ -25,8 +25,8 @@ export class MapComponent implements OnInit {
         }
       )
     ],
-    zoom: 15,
-    center: latLng(60.1631, 24.9414)
+    zoom: 14,
+    center: latLng(60.1765, 24.94)
   };
 
   private markers: Dictionary<DataMarker> = {};

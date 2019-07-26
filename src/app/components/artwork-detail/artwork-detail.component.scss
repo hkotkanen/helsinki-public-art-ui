@@ -5,16 +5,30 @@
 
   img {
     max-width: 100%;
-    margin-top: 15px;
+    margin-top: 5px;
   }
 
   h1 {
-    margin-bottom: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
   }
 
-  .location-details {
+  .metadata-details {
     padding-bottom: 5px;
+  }
+
+  .author-detail {
+    font-size: small;
+  }
+  .published-detail,
+  .copyright-detail {
     font-size: smaller;
+  }
+
+  .location-detail {
+    font-size: smaller;
+    margin-top: 5px;
+    margin-bottom: 10px;
 
     mat-icon {
       position: relative;

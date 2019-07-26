@@ -35,6 +35,25 @@ export class ArtworkService {
   getArtworkSingle(id: number): Observable<PublicArtWorkFull> {
     return this.http.get(`${this.apiRootUrl}/${id}/${environment.singleUnitApiParams}`).pipe(
       map(response => {
+
+        // Investigate "connections" parameter which might hold interesting things
+        let artist = null;
+        let published = null;
+        let copyright = null;
+        const connections = response['connections'];
+        if (connections) {
+          for (const metadata of connections) {
+            const metadata_name = metadata['name']['fi'];
+            if (metadata_name.toLowerCase().indexOf('tekijä') >= 0) {
+              artist = metadata_name;
+            } else if (metadata_name.toLowerCase().indexOf('julkistettu') >= 0) {
+              published = metadata_name;
+            } else if (metadata_name.indexOf('©') >= 0) {
+              copyright = metadata_name;
+            }
+          }
+        }
+
         return {
           id: response['id'],
           name: response['name']['fi'],
@@ -43,10 +62,13 @@ export class ArtworkService {
           pictureUrl: response['picture_url'] ? response['picture_url'] : null,
           pictureEntranceUrl: response['picture_entrance_url'] ? response['picture_entrance_url'] : null,
           streetViewEntranceUrl: response['streetview_entrance_url'] ? response['streetview_entrance_url'] : null,
-          description: response['description'] ? response['description']['fi'] : null,
+          description: response['description'] ? response['description']['fi'] : '',
           shortDescription: null,
           pictureCaption: response['picture_caption'] ? response['picture_caption']['fi'] : null,
-          municipality: response['municipality'] ? response['municipality']['name']['fi'] : null
+          municipality: response['municipality'] ? response['municipality']['name']['fi'] : null,
+          author: artist ? artist : null,
+          published_year: published ? published : null,
+          copyright: copyright ? copyright : null
         };
       })
     );

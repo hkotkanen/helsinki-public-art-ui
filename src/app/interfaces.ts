@@ -44,6 +44,10 @@ export interface PublicArtWorkFull {
   municipality: string;
   description: string;
 
+  author?: string;
+  copyright?: string;
+  published_year?: string;
+
   location?: [number, number];
   streetAddress?: string;
   pictureUrl?: string;
