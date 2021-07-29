@@ -16,7 +16,7 @@ export class ArtworkService {
   constructor(private http: HttpClient) {}
 
   getArtworkList(): Observable<PublicArtWorkConcise[]> {
-    return this.http.get<ApiResponse>(`${this.apiRootUrl}${environment.listApiParams}`).pipe(
+    return this.http.get<ApiResponse>(`${this.apiRootUrl}/${environment.listApiParams}`).pipe(
       map(response => {
         return response.results.map(artwork => {
           return {
